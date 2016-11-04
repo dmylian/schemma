@@ -1,4 +1,4 @@
-const { isNil, isType, match, gt, lt }  = require('../core/predicates');
+const { isNil, isType, pattern, gt, lt }  = require('../core/predicates');
 const { compose, mergeErrors: validate } = require('../core/index');
 
 const noValidationErrors = {
@@ -38,7 +38,7 @@ describe('valid data passed', () => {
       )).toEqual(noValidationErrors);
   });
 
-  it('should pass string matching checks', () => {
+  it('should pass string matching pattern checks', () => {
     expect(validate(
       {
         a: 'this',
@@ -46,9 +46,9 @@ describe('valid data passed', () => {
         c: 'a string'
       },
       {
-        a: compose(match('this')),
-        b: compose(match('is')),
-        c: compose(match('string'))
+        a: compose(pattern(/this/)),
+        b: compose(pattern(/is/)),
+        c: compose(pattern(/string/))
       }
     )).toEqual(noValidationErrors);
   });

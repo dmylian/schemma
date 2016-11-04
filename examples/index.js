@@ -1,5 +1,5 @@
 // Import predicate helper functions
-const { isNil, isType, match, gt, lt }  = require('../core/predicates');
+const { isNil, isType, pattern, gt, lt }  = require('../core/predicates');
 const { compose, mergeErrors:validate } = require('../core/index');
 
 let res = validate(
@@ -11,6 +11,6 @@ let res = validate(
  {
    a: compose(isType(Number)),
    b: compose(isType(Number)),
-   c: compose(isType(String), match('string'))
+   c: compose(isType(String), pattern(/string/))
  }
 );

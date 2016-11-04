@@ -4,11 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "watch": "babel --watch=./core --out-dir=./build",
+    "build": "babel ./core --out-dir=./build",
+    "test": "jest",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-plugin-transform-flow-strip-types": "^6.18.0",
+    "flow-bin": "^0.34.0",
     "jest": "^16.0.2"
   }
 }
