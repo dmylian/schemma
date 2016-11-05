@@ -1,7 +1,6 @@
 // @flow
 
-type ValidationError<T> = { info: string, input: T };
-type ValidationResult<T> = ValidationError<T> | true;
+import type { ValidationError, ValidationResult } from './types';
 
 // not:: x -> boolean
 const not = (x: any) => !x;

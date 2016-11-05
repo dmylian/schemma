@@ -1,21 +1,24 @@
 // @flow
 
-const get = (p: string): Function => (object: Object): any => object[p];
+import type {
+  ValidatorFn, ValidationError, ValidationResult
+} from './types';
 
-// Compose function for the rules definition object
-// compose :: fns[] -> (field -> fieldErrors)
-const compose = (...validators: Array<Function>): Function | null => {
+
+const get = (p: string): Function => (object: Object): any => object[p];
+const call = (param: any): Function => (fn: Function): any => fn(param);
+
+const compose = (...validators: Array<ValidatorFn>): Function | null => {
   if (!validators.length) return null;
   return (field: any) => filterErrors(applyValidators(field, validators));
 }
 
-// applyValidators :: field -> validators -> validationResults[]
-const applyValidators = (field: any, validators: Array<Function>): Array<any> => validators.map(v => v(field));
-const filterErrors = (errors: Array<any>): Array<any> => errors.filter(get('info'));
+const applyValidators = (field: any, validators: Array<Function>): Array<ValidationResult<*>> => validators.map(call(field));
+const filterErrors = (errors: Array<ValidationResult<*>>): Array<ValidationResult<*>> => errors.filter(get('info'));
 
-// mergeErrors :: sourceObject -> rulesObject -> validationResults
+
 const mergeErrors = (source: Object, rules: Object): Object => {
-  return Object.keys(source).reduce((acc, c) => {
+  return Object.keys(source).reduce((acc: Object, c: string) => {
     acc[c] = rules[c](source[c]);
     return acc;
   }, {});

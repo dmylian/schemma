@@ -1,5 +1,5 @@
-const { isNil, isType, pattern, gt, lt }  = require('../core/predicates');
-const { compose, mergeErrors: validate } = require('../core/index');
+const { isNil, isType, pattern, gt, lt } = require('../dist/predicates');
+const { compose, mergeErrors: validate } = require('../dist/index');
 
 const noValidationErrors = {
   a: [],
