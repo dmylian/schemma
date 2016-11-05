@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "babel --watch=./core --out-dir=./dist",
-    "prebuild": "npm run flow && ./node_modules/.bin/eslint core/*.js",
-    "build": "babel ./core --out-dir=./dist",
+    "dev": "babel --watch=./src/core --out-dir=./dist",
+    "prebuild": "npm run flow && ./node_modules/.bin/eslint ./src/core/*.js",
+    "build": "babel ./src/core --out-dir=./dist",
     "pretest": "npm run build",
     "postinstall": "npm run build",
     "test": "jest",

@@ -1,5 +1,6 @@
 const { isNil, isType, pattern, gt, lt }  = require('../dist/predicates');
-const { compose, validate }  = require('../dist/index');
+const { validate }  = require('../dist/index');
+const { compose } = require('../dist/ruleDefinitionBuilder');
 
 let res = validate(
  {
