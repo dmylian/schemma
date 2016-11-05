@@ -1,8 +1,19 @@
 // @flow
 
 import type {
-  ValidatorFn, ValidationError, ValidationResult, Map
-} from './types';
+  ValidatorFn,
+  ValidationError,
+  ValidationResult }  from './types/validation';
+
+import type { Map }   from './types/shared';
+
+import type {
+  ConfigError,
+  ConfigProper,
+  ConfigStatus }      from './types/config';
+
+  const STATUS_ERROR: string = 'error';
+  const STATUS_OK: string = 'ok';
 
 // Allow higher-level abstraction
 const get = (p: string): Function => (object: Object): any => object[p]; // eslint-disable-line flowtype/no-weak-types
@@ -24,7 +35,35 @@ const mergeErrors = (source: Map<*>, rules: Map<*>): Map<Array<ValidationResult<
     return acc;
   }, {});
 
+const raiseConfigError = (error: string) => {
+  throw new SyntaxError(error);
+}
+
+const validateInputConfig = (source: Map<*>, rules: Map<*>, callback: (result: ConfigStatus) => void) => {
+  if (Object.keys(source).length > Object.keys(rules).length) {
+    return callback({
+      status: STATUS_ERROR,
+      errorCode: 1,
+      errorString: 'Rules object doesn\'t match the source'
+    });
+  } else {
+    return callback({
+      status: STATUS_OK
+    });
+  }
+}
+
+const validate = (source: Map<*>, rules: Map<*>): Map<Array<ValidationResult<*>>> =>
+  validateInputConfig(source, rules, (result: ConfigStatus) => {
+    switch (result.status) {
+      case STATUS_ERROR:
+        return raiseConfigError(result.errorString);
+      default:
+        return mergeErrors(source, rules);
+    }
+  });
+
 module.exports = {
   compose,
-  mergeErrors
+  validate
 }

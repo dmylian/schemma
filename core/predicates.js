@@ -1,7 +1,7 @@
 // @flow
 /* eslint-disable flowtype/no-weak-types */
 
-import type { ValidationError, ValidationResult } from './types';
+import type { ValidationError, ValidationResult }  from './types/validation';
 
 // not:: x -> boolean
 const not = (x: any) => !x;

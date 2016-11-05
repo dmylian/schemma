@@ -1,5 +1,5 @@
 const { isNil, isType, pattern, gt, lt }  = require('../dist/predicates');
-const { compose, mergeErrors: validate }  = require('../dist/index');
+const { compose, validate }  = require('../dist/index');
 
 let res = validate(
  {
@@ -13,3 +13,5 @@ let res = validate(
    c: compose(isType(String), pattern(/string/))
  }
 );
+
+console.log(res);

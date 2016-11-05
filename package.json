@@ -8,6 +8,7 @@
     "prebuild": "npm run flow && ./node_modules/.bin/eslint core/*.js",
     "build": "babel ./core --out-dir=./dist",
     "pretest": "npm run build",
+    "postinstall": "npm run build",
     "test": "jest",
     "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
