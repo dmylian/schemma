@@ -1,4 +1,5 @@
 // @flow
+/* eslint-disable flowtype/no-weak-types */
 
 import type { ValidationError, ValidationResult } from './types';
 

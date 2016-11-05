@@ -21,8 +21,8 @@
       1,
       {
         "any": false,
-        "Object": false,
-        "Function": false
+        "Object": true,
+        "Function": true
       }
     ],
     "flowtype/object-type-delimiter": [
@@ -68,7 +68,7 @@
   },
   "settings": {
     "flowtype": {
-      "onlyFilesWithFlowAnnotation": false
+      "onlyFilesWithFlowAnnotation": true
     }
   }
 }
