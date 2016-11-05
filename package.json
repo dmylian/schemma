@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "babel --watch=./core --out-dir=./dist",
-    "prebuild": "npm run flow",
-    "build":  "babel ./core --out-dir=./dist",
+    "prebuild": "npm run flow && ./node_modules/.bin/eslint core/*.js",
+    "build": "babel ./core --out-dir=./dist",
     "pretest": "npm run build",
     "test": "jest",
     "flow": "flow; test $? -eq 0 -o $? -eq 2"
@@ -15,7 +15,10 @@
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "6.18.0",
+    "babel-eslint": "^7.1.0",
     "babel-plugin-transform-flow-strip-types": "^6.18.0",
+    "eslint": "^3.9.1",
+    "eslint-plugin-flowtype": "^2.25.0",
     "flow-bin": "^0.34.0",
     "jest": "^16.0.2"
   }
