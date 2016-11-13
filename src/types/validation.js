@@ -1,5 +1,5 @@
-type ValidationError<T> = { info: string, input: T };
+export type ValidationError<T> = { info: string, input: T };
 
-type ValidationResult<T> = ValidationError<T> | true;
+export type ValidationResult<T> = ValidationError<T> | true;
 
-type ValidatorFn = (x: any) => (y: any) => ValidationResult<*>;
+export type ValidatorFn = (x: any) => (y: any) => ValidationResult<*>;

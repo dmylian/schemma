@@ -1,18 +1,13 @@
 const { isNil, isType, pattern, gt, lt }  = require('../dist/predicates');
-const { validate }  = require('../dist/index');
-const { compose } = require('../dist/ruleDefinitionBuilder');
+const { typePred } = require('../src/core/predicates');
+const { Validator } = require('../src/core/bundledValidator');
 
-let res = validate(
- {
-   a: 1,
-   b: 2,
-   c: 'string'
- },
- {
-   a: compose(isType(Number)),
-   b: compose(isType(Number)),
-   c: compose(isType(String), pattern(/string/))
- }
-);
+let a = new Validator({
+  a: isType(Number),
+  b: isType(Number),
+  c: [isType(String), pattern(/string/)]
+}, {
+  a: 1, b: 2, c: 'string'
+});
 
-console.log(res);
+ console.log(a.validate(), a.valid);

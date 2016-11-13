@@ -1,5 +1,5 @@
-type ConfigError = { status: 'error', errorCode: number, errorString: string };
+export type ConfigError = { status: 'error', errorCode: number, errorString: string };
 
-type ConfigProper = { status: 'ok' };
+export type ConfigProper = { status: 'ok' };
 
-type ConfigStatus = ConfigProper | ConfigError;
+export type ConfigStatus = ConfigProper | ConfigError;

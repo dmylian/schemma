@@ -22,5 +22,8 @@
     "eslint-plugin-flowtype": "^2.25.0",
     "flow-bin": "^0.34.0",
     "jest": "^16.0.2"
+  },
+  "dependencies": {
+    "mixwith": "^0.1.1"
   }
 }

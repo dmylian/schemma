@@ -1,1 +1,1 @@
-type Map<T> = {[key: string]: T};
+export type Map<T> = {[key: string]: T};
